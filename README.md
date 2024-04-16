@@ -1,4 +1,5 @@
-Table "users" as User {
+aiogram 3.4.1 + sqlalchemy 2
+``` Table "users" as User {
   id Bigint [pk]
   created DateTime
   updated DateTime
@@ -75,4 +76,4 @@ Table "poll_availability" as PollAvailability {
   updated DateTime
   poll_id Bigint [ref: > Poll.id]
   user_id Bigint [ref: > User.id]
-}
+}```

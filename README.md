@@ -1,4 +1,4 @@
-aiogram 3.4.1 + sqlalchemy 2
+aiogram 3.4.1 + sqlalchemy 2 + PostgreSQL
 ````
 Table "users" as User {
   id Bigint [pk]

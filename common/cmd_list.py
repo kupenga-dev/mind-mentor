@@ -19,7 +19,7 @@ USER_KB = KeyboardBuilder.get_keyboard(
 
 PSYCHOLOGIST_KB = KeyboardBuilder.get_keyboard(
     "Создать опрос",
-    "Получить историю по пациенту",
+    "Получить историю по клиенту",
     "Получить историю опросов",
     "Дать доступ к опросу",
     placeholder="Выберите действие",

@@ -1,0 +1,48 @@
+version: '3.8'
+
+services:
+  api:
+    build: docker/python/Dockerfile
+    container_name: python_api
+    volumes:
+      - ./app:/app
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
+    networks:
+      - apinet
+
+  db:
+    image: postgres
+    container_name: postgres_db
+    volumes:
+      - db-data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_DB: mind-mentor
+      POSTGRES_USER: mindmentor
+      POSTGRES_PASSWORD: sQVZK6PhMCRtdeO
+    networks:
+      - apinet
+
+  nginx:
+    image: nginx:latest
+    container_name: nginx_proxy
+    volumes:
+      - ./docker/nginx/nginx.conf:/etc/nginx/nginx.conf
+      - ./certbot/conf:/etc/letsencrypt
+      - ./certbot/www:/var/www/certbot
+    ports:
+      - "80:80"
+      - "443:443"
+    depends_on:
+      - api
+    networks:
+      - apinet
+
+networks:
+  apinet:
+
+volumes:
+  db-data:
+

@@ -25,14 +25,14 @@ async def take_info(message: types.Message) -> None:
     await message.answer_document(report_input_file)
 
 
-@psychologist_router.message(F.text.lower() == 'получить историю по пациенту')
+@psychologist_router.message(F.text.lower() == 'получить историю по клиенту')
 async def take_patient_list(message: types.Message) -> None:
     patients = await find_patients_by_psy_id(message.from_user.id)
     if patients is None:
         role_keyboard = await get_keyboard_by_id(message.from_user.id)
 
         await message.answer(
-            'У вас нет действующих пациентов.',
+            'У вас нет действующих клиентов.',
             reply_markup=role_keyboard
         )
         return
@@ -40,7 +40,7 @@ async def take_patient_list(message: types.Message) -> None:
     keyboard = await make_patient_inline_keyboard(patients)
 
     await message.answer(
-        'Выберите пациента.',
+        'Выберите клиента.',
         reply_markup=keyboard
     )
 
